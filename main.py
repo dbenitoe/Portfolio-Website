@@ -1,4 +1,5 @@
 import streamlit as st
+import pandas as pd
 
 st.set_page_config(layout='wide')
 
@@ -18,6 +19,19 @@ with col2:
 col3 = st.columns(1)
 
 with col3[0]:
-    st.markdown("<p style='font-size: 24px;'><b>Below you can see applications that I have built with Python. Feel "
+    st.markdown("<p style='font-size: 20px;'><b>Below you can see applications that I have built with Python. Feel "
                 "free to contact me!</b></p>",
                 unsafe_allow_html=True)
+
+col4, col5 = st.columns(2)
+
+df = pd.read_csv("data.csv", sep=";")
+
+with col4:
+    for index, row in df[:10].iterrows():
+        st.header(row['title'])
+
+
+with col5:
+    for index, row in df[10:].iterrows():
+        st.header(row['title'])
